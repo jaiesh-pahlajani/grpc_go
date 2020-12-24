@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"time"
 
 	"github.com/grpc_go/calculator/calculatorpb"
 
@@ -52,6 +53,31 @@ func doServerStreaming(client calculatorpb.CalculatorServiceClient) {
 
 }
 
+func doClientStreaming(client calculatorpb.CalculatorServiceClient) {
+	n := []int{1, 3, 4, 5, 5}
+	stream, err := client.Average(context.Background())
+	if err != nil {
+		fmt.Printf("Error %v", err)
+	}
+	for _, i := range n {
+		req := &calculatorpb.NumberRequest{
+			Number: int32(i),
+		}
+		err := stream.Send(req)
+		if err != nil {
+			fmt.Printf("Error %v", err)
+		}
+		fmt.Printf("Sent %v \n", i)
+		time.Sleep(1000 * time.Millisecond)
+	}
+
+	res, err := stream.CloseAndRecv()
+	if err != nil {
+		fmt.Printf("Error %v", err)
+	}
+	fmt.Printf("Response is %v \n", res)
+}
+
 func main() {
 
 	// Create a connection
@@ -65,5 +91,6 @@ func main() {
 	fmt.Printf("Client created: %v", client)
 
 	//doUnary(client)
-	doServerStreaming(client)
+	//doServerStreaming(client)
+	doClientStreaming(client)
 }
