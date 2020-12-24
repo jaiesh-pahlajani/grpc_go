@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"time"
 
 	"github.com/grpc_go/calculator/calculatorpb"
 
@@ -23,6 +24,32 @@ func (*server) Sum(ctx context.Context, req *calculatorpb.SumRequest) (*calculat
 	}
 
 	return sumResponse, nil
+}
+
+func (*server) PrimeNumberDecomposition(numberRequest *calculatorpb.NumberRequest, decompositionServer calculatorpb.CalculatorService_PrimeNumberDecompositionServer) error {
+
+	fmt.Printf("Prime number decomposition was inoked with %v \n", numberRequest)
+
+	n := numberRequest.GetNumber()
+
+	k := int32(2)
+	for n > 1 {
+		if n%k == 0 {
+			n = n / k
+			numberResponse := &calculatorpb.NumberResponse{
+				Number: k,
+			}
+			time.Sleep(1000 * time.Millisecond)
+			err := decompositionServer.Send(numberResponse)
+			if err != nil {
+				fmt.Printf("Error while sending to client %v", err)
+			}
+		} else {
+			k++
+		}
+	}
+
+	return nil
 }
 
 func main() {
