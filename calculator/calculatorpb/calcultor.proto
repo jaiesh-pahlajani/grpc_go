@@ -24,10 +24,17 @@ message NumberResponse {
   int32 number = 1;
 }
 
+message AverageNumberResponse {
+  float number = 1;
+}
+
 service CalculatorService{
   // Unary API
   rpc Sum(SumRequest) returns (SumResponse) {};
 
   // Server Streaming API
   rpc PrimeNumberDecomposition(NumberRequest) returns (stream NumberResponse) {};
+
+  // Client Streaming API
+  rpc Average(stream NumberRequest) returns (AverageNumberResponse) {};
 }

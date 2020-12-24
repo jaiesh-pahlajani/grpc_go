@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"time"
 
 	"github.com/grpc_go/greet/greetpb"
 	"google.golang.org/grpc"
@@ -56,6 +57,39 @@ func doServerStreaming(client greetpb.GreetServiceClient) {
 	}
 }
 
+func doClientStreaming(client greetpb.GreetServiceClient) {
+
+	greetingList := []*greetpb.Greeting{
+		{
+			FirstName: "James",
+			LastName:  "Bond",
+		},
+		{
+			FirstName: "Lionel",
+			LastName:  "Messi",
+		},
+	}
+	stream, err := client.LongGreet(context.Background())
+	for _, greeting := range greetingList {
+		req := &greetpb.LongGreetRequest{
+			Greeting: greeting,
+		}
+
+		err = stream.Send(req)
+		time.Sleep(1000 * time.Millisecond)
+		fmt.Printf("Sending request %v \n", req)
+		if err != nil {
+			fmt.Printf("Error %v", err)
+		}
+	}
+
+	response, err := stream.CloseAndRecv()
+	if err != nil {
+		fmt.Printf("error %v", err)
+	}
+	fmt.Printf("Response is %v \n", response)
+}
+
 func main() {
 
 	// Create a connection
@@ -69,5 +103,6 @@ func main() {
 	fmt.Printf("Client created: %v \n", client)
 
 	//doUnary(client)
-	doServerStreaming(client)
+	//doServerStreaming(client)
+	doClientStreaming(client)
 }
