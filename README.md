@@ -38,6 +38,20 @@ Deadlines allow gRPC clients to specify how long they are willing for an RPC to 
 
 https://grpc.io/blog/deadlines/
 
+###### SSL
+
+In production grpc calls should be running with encryption enabled.
+This is done by generating SSL certificates.
+SSL allows comms to be secure end to end.
+When we communicate over internet data is visible to all servers that transfers your packet.
+Any router can intercept that packet.
+Using ssl all messages are encrypted.
+Two ways of using SSL(grpc can use both):
+1. 1 way verification eg: browser => webserver (ENCRYPTION)
+2. 2 way verification eg: SSL auth (AUTHENTICATION)
+
+https://grpc.io/docs/guides/auth/
+
 ###### Links
 
 https://docs.microsoft.com/en-us/aspnet/core/grpc/comparison?view=aspnetcore-3.0
