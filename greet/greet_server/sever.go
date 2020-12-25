@@ -9,6 +9,8 @@ import (
 	"strconv"
 	"time"
 
+	"google.golang.org/grpc/reflection"
+
 	"google.golang.org/grpc/credentials"
 
 	"google.golang.org/grpc"
@@ -121,7 +123,7 @@ func main() {
 
 	// SSL Cert
 	opts := []grpc.ServerOption{}
-	tls := true
+	tls := false
 	if tls {
 		certFile := "ssl/server.crt"
 		keyFile := "ssl/server.pem"
@@ -136,6 +138,9 @@ func main() {
 	// GRPC Server
 	s := grpc.NewServer(opts...)
 	greetpb.RegisterGreetServiceServer(s, &server{})
+
+	// Register reflection server on grpc
+	reflection.Register(s)
 
 	fmt.Println("Server started")
 

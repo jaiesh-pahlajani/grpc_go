@@ -52,7 +52,12 @@ Two ways of using SSL(grpc can use both):
 
 https://grpc.io/docs/guides/auth/
 
-###### Links
+###### Evans
+
+For calling server without setting up clients -
+https://github.com/ktr0731/evans
+
+###### Other Links
 
 https://docs.microsoft.com/en-us/aspnet/core/grpc/comparison?view=aspnetcore-3.0
 
