@@ -78,6 +78,54 @@ func doClientStreaming(client calculatorpb.CalculatorServiceClient) {
 	fmt.Printf("Response is %v \n", res)
 }
 
+func doBiDiSteaming(client calculatorpb.CalculatorServiceClient) {
+
+	n := []int{1, 3, 10, 4, 5, 5}
+	stream, err := client.CurrentMax(context.Background())
+	if err != nil {
+		fmt.Printf("Error %v", err)
+	}
+	waitc := make(chan struct{})
+
+	// Send
+	go func() {
+		for _, i := range n {
+			req := &calculatorpb.NumberRequest{
+				Number: int32(i),
+			}
+			time.Sleep(1000 * time.Millisecond)
+			fmt.Printf("Stream send %v \n", req.Number)
+			err := stream.Send(req)
+			if err != nil {
+				fmt.Printf("Error %v", err)
+			}
+		}
+		err := stream.CloseSend()
+		if err != nil {
+			fmt.Printf("Error %v", err)
+		}
+	}()
+
+	// Recv
+	go func() {
+		for {
+			res, err := stream.Recv()
+			if err == io.EOF {
+				break
+			}
+			if err != nil {
+				fmt.Printf("Error %v", err)
+			}
+			res.GetNumber()
+			fmt.Printf("Stream Response %v \n", res.GetNumber())
+		}
+		close(waitc)
+	}()
+
+	// block
+	<-waitc
+}
+
 func main() {
 
 	// Create a connection
@@ -92,5 +140,6 @@ func main() {
 
 	//doUnary(client)
 	//doServerStreaming(client)
-	doClientStreaming(client)
+	//doClientStreaming(client)
+	doBiDiSteaming(client)
 }

@@ -90,6 +90,79 @@ func doClientStreaming(client greetpb.GreetServiceClient) {
 	fmt.Printf("Response is %v \n", response)
 }
 
+func doBiDiStreaming(client greetpb.GreetServiceClient) {
+
+	// Create a stream
+	stream, err := client.BidirectionalGreet(context.Background())
+	if err != nil {
+		fmt.Printf("Error %v \n", err)
+	}
+
+	waitc := make(chan struct{})
+
+	greetingList := []*greetpb.Greeting{
+		{
+			FirstName: "James",
+			LastName:  "Bond",
+		},
+		{
+			FirstName: "Lionel",
+			LastName:  "Messi",
+		},
+		{
+			FirstName: "Miss",
+			LastName:  "Moneypenny",
+		},
+		{
+			FirstName: "Sachin",
+			LastName:  "Tendulkar",
+		},
+		{
+			FirstName: "Donald",
+			LastName:  "Trump",
+		},
+	}
+
+	// Send bunch of messages - go routine
+	go func() {
+		for _, greeting := range greetingList {
+			req := &greetpb.GreetRequest{
+				Greeting: greeting,
+			}
+			time.Sleep(1000 * time.Millisecond)
+			fmt.Printf("Sending: %v \n", greeting)
+			err := stream.Send(req)
+			if err != nil {
+				fmt.Printf("Error %v \n", err)
+			}
+		}
+		err := stream.CloseSend()
+		if err != nil {
+			fmt.Printf("Error %v \n", err)
+		}
+	}()
+
+	// Receive bunch of messages do routine
+	go func() {
+		for {
+			res, err := stream.Recv()
+			if err == io.EOF {
+				close(waitc)
+				break
+			}
+			if err != nil {
+				fmt.Printf("Error %v \n", err)
+			}
+			fmt.Printf("Response stream: %v \n", res.GetResult())
+		}
+	}()
+
+	<-waitc
+
+	// Block until everything is done
+
+}
+
 func main() {
 
 	// Create a connection
@@ -104,5 +177,6 @@ func main() {
 
 	//doUnary(client)
 	//doServerStreaming(client)
-	doClientStreaming(client)
+	//doClientStreaming(client)
+	doBiDiStreaming(client)
 }

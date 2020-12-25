@@ -79,6 +79,31 @@ func (*server) Average(stream calculatorpb.CalculatorService_AverageServer) erro
 	}
 }
 
+func (*server) CurrentMax(stream calculatorpb.CalculatorService_CurrentMaxServer) error {
+
+	currentMax := int32(0)
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			fmt.Printf("Error %v \n", err)
+		}
+		if req.GetNumber() > currentMax {
+			currentMax = req.GetNumber()
+		}
+		response := &calculatorpb.NumberResponse{
+			Number: currentMax,
+		}
+		err = stream.Send(response)
+		if err != nil {
+			fmt.Printf("Error sending to client %v \n", err)
+		}
+	}
+	return nil
+}
+
 func main() {
 
 	// Port binding

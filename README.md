@@ -4,3 +4,4 @@
 2. Unary implementation
 3. Server Streaming Implementation
 4. Client Streaming Implementation
+5. Bidirectional Implementation

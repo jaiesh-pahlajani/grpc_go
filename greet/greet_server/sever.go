@@ -64,6 +64,31 @@ func (*server) LongGreet(stream greetpb.GreetService_LongGreetServer) error {
 	}
 }
 
+func (*server) BidirectionalGreet(stream greetpb.GreetService_BidirectionalGreetServer) error {
+	fmt.Println("Invoked Bidirectional Greet!")
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			return nil
+		}
+		if err != nil {
+			log.Fatalf("Error while reading client streaming %v \n", err)
+			return err
+		}
+		firstName := req.GetGreeting().GetFirstName()
+		result := "Hello " + firstName + "!"
+		response := &greetpb.GreetResponse{
+			Result: result,
+		}
+		err = stream.Send(response)
+		if err != nil {
+			fmt.Printf("Error %v \n", err)
+			return err
+		}
+	}
+	return nil
+}
+
 func main() {
 
 	// Port binding

@@ -289,8 +289,8 @@ var file_greet_greetpb_greet_proto_rawDesc = []byte{
 	0x72, 0x65, 0x65, 0x74, 0x69, 0x6e, 0x67, 0x52, 0x08, 0x67, 0x72, 0x65, 0x65, 0x74, 0x69, 0x6e,
 	0x67, 0x22, 0x2b, 0x0a, 0x11, 0x4c, 0x6f, 0x6e, 0x67, 0x47, 0x72, 0x65, 0x65, 0x74, 0x52, 0x65,
 	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x32, 0xc9,
-	0x01, 0x0a, 0x0c, 0x47, 0x72, 0x65, 0x65, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x32, 0x90,
+	0x02, 0x0a, 0x0c, 0x47, 0x72, 0x65, 0x65, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
 	0x34, 0x0a, 0x05, 0x47, 0x72, 0x65, 0x65, 0x74, 0x12, 0x13, 0x2e, 0x67, 0x72, 0x65, 0x65, 0x74,
 	0x2e, 0x47, 0x72, 0x65, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e,
 	0x67, 0x72, 0x65, 0x65, 0x74, 0x2e, 0x47, 0x72, 0x65, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
@@ -302,8 +302,13 @@ var file_greet_greetpb_greet_proto_rawDesc = []byte{
 	0x65, 0x65, 0x74, 0x12, 0x17, 0x2e, 0x67, 0x72, 0x65, 0x65, 0x74, 0x2e, 0x4c, 0x6f, 0x6e, 0x67,
 	0x47, 0x72, 0x65, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x67,
 	0x72, 0x65, 0x65, 0x74, 0x2e, 0x4c, 0x6f, 0x6e, 0x67, 0x47, 0x72, 0x65, 0x65, 0x74, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x28, 0x01, 0x42, 0x09, 0x5a, 0x07, 0x67, 0x72,
-	0x65, 0x65, 0x74, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x28, 0x01, 0x12, 0x45, 0x0a, 0x12, 0x42, 0x69,
+	0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x61, 0x6c, 0x47, 0x72, 0x65, 0x65, 0x74,
+	0x12, 0x13, 0x2e, 0x67, 0x72, 0x65, 0x65, 0x74, 0x2e, 0x47, 0x72, 0x65, 0x65, 0x74, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x67, 0x72, 0x65, 0x65, 0x74, 0x2e, 0x47, 0x72,
+	0x65, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x28, 0x01, 0x30,
+	0x01, 0x42, 0x09, 0x5a, 0x07, 0x67, 0x72, 0x65, 0x65, 0x74, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -332,11 +337,13 @@ var file_greet_greetpb_greet_proto_depIdxs = []int32{
 	1, // 2: greet.GreetService.Greet:input_type -> greet.GreetRequest
 	1, // 3: greet.GreetService.GreetManyTimes:input_type -> greet.GreetRequest
 	3, // 4: greet.GreetService.LongGreet:input_type -> greet.LongGreetRequest
-	2, // 5: greet.GreetService.Greet:output_type -> greet.GreetResponse
-	2, // 6: greet.GreetService.GreetManyTimes:output_type -> greet.GreetResponse
-	4, // 7: greet.GreetService.LongGreet:output_type -> greet.LongGreetResponse
-	5, // [5:8] is the sub-list for method output_type
-	2, // [2:5] is the sub-list for method input_type
+	1, // 5: greet.GreetService.BidirectionalGreet:input_type -> greet.GreetRequest
+	2, // 6: greet.GreetService.Greet:output_type -> greet.GreetResponse
+	2, // 7: greet.GreetService.GreetManyTimes:output_type -> greet.GreetResponse
+	4, // 8: greet.GreetService.LongGreet:output_type -> greet.LongGreetResponse
+	2, // 9: greet.GreetService.BidirectionalGreet:output_type -> greet.GreetResponse
+	6, // [6:10] is the sub-list for method output_type
+	2, // [2:6] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
 	2, // [2:2] is the sub-list for extension extendee
 	0, // [0:2] is the sub-list for field type_name
@@ -447,6 +454,8 @@ type GreetServiceClient interface {
 	GreetManyTimes(ctx context.Context, in *GreetRequest, opts ...grpc.CallOption) (GreetService_GreetManyTimesClient, error)
 	// Client Streaming
 	LongGreet(ctx context.Context, opts ...grpc.CallOption) (GreetService_LongGreetClient, error)
+	// Bidirectional Streaming
+	BidirectionalGreet(ctx context.Context, opts ...grpc.CallOption) (GreetService_BidirectionalGreetClient, error)
 }
 
 type greetServiceClient struct {
@@ -532,6 +541,37 @@ func (x *greetServiceLongGreetClient) CloseAndRecv() (*LongGreetResponse, error)
 	return m, nil
 }
 
+func (c *greetServiceClient) BidirectionalGreet(ctx context.Context, opts ...grpc.CallOption) (GreetService_BidirectionalGreetClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_GreetService_serviceDesc.Streams[2], "/greet.GreetService/BidirectionalGreet", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &greetServiceBidirectionalGreetClient{stream}
+	return x, nil
+}
+
+type GreetService_BidirectionalGreetClient interface {
+	Send(*GreetRequest) error
+	Recv() (*GreetResponse, error)
+	grpc.ClientStream
+}
+
+type greetServiceBidirectionalGreetClient struct {
+	grpc.ClientStream
+}
+
+func (x *greetServiceBidirectionalGreetClient) Send(m *GreetRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *greetServiceBidirectionalGreetClient) Recv() (*GreetResponse, error) {
+	m := new(GreetResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // GreetServiceServer is the server API for GreetService service.
 type GreetServiceServer interface {
 	// Unary API
@@ -540,6 +580,8 @@ type GreetServiceServer interface {
 	GreetManyTimes(*GreetRequest, GreetService_GreetManyTimesServer) error
 	// Client Streaming
 	LongGreet(GreetService_LongGreetServer) error
+	// Bidirectional Streaming
+	BidirectionalGreet(GreetService_BidirectionalGreetServer) error
 }
 
 // UnimplementedGreetServiceServer can be embedded to have forward compatible implementations.
@@ -554,6 +596,9 @@ func (*UnimplementedGreetServiceServer) GreetManyTimes(*GreetRequest, GreetServi
 }
 func (*UnimplementedGreetServiceServer) LongGreet(GreetService_LongGreetServer) error {
 	return status.Errorf(codes.Unimplemented, "method LongGreet not implemented")
+}
+func (*UnimplementedGreetServiceServer) BidirectionalGreet(GreetService_BidirectionalGreetServer) error {
+	return status.Errorf(codes.Unimplemented, "method BidirectionalGreet not implemented")
 }
 
 func RegisterGreetServiceServer(s *grpc.Server, srv GreetServiceServer) {
@@ -625,6 +670,32 @@ func (x *greetServiceLongGreetServer) Recv() (*LongGreetRequest, error) {
 	return m, nil
 }
 
+func _GreetService_BidirectionalGreet_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(GreetServiceServer).BidirectionalGreet(&greetServiceBidirectionalGreetServer{stream})
+}
+
+type GreetService_BidirectionalGreetServer interface {
+	Send(*GreetResponse) error
+	Recv() (*GreetRequest, error)
+	grpc.ServerStream
+}
+
+type greetServiceBidirectionalGreetServer struct {
+	grpc.ServerStream
+}
+
+func (x *greetServiceBidirectionalGreetServer) Send(m *GreetResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *greetServiceBidirectionalGreetServer) Recv() (*GreetRequest, error) {
+	m := new(GreetRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 var _GreetService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "greet.GreetService",
 	HandlerType: (*GreetServiceServer)(nil),
@@ -643,6 +714,12 @@ var _GreetService_serviceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "LongGreet",
 			Handler:       _GreetService_LongGreet_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "BidirectionalGreet",
+			Handler:       _GreetService_BidirectionalGreet_Handler,
+			ServerStreams: true,
 			ClientStreams: true,
 		},
 	},
