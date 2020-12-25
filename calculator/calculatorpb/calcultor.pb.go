@@ -339,7 +339,7 @@ var file_calculator_calculatorpb_calcultor_proto_rawDesc = []byte{
 	0x01, 0x28, 0x05, 0x52, 0x06, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x22, 0x2f, 0x0a, 0x15, 0x41,
 	0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70,
 	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x02, 0x52, 0x06, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x32, 0xbc, 0x02, 0x0a,
+	0x20, 0x01, 0x28, 0x02, 0x52, 0x06, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x32, 0x83, 0x03, 0x0a,
 	0x11, 0x43, 0x61, 0x6c, 0x63, 0x75, 0x6c, 0x61, 0x74, 0x6f, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69,
 	0x63, 0x65, 0x12, 0x38, 0x0a, 0x03, 0x53, 0x75, 0x6d, 0x12, 0x16, 0x2e, 0x63, 0x61, 0x6c, 0x63,
 	0x75, 0x6c, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x53, 0x75, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
@@ -359,9 +359,13 @@ var file_calculator_calculatorpb_calcultor_proto_rawDesc = []byte{
 	0x2e, 0x63, 0x61, 0x6c, 0x63, 0x75, 0x6c, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x4e, 0x75, 0x6d, 0x62,
 	0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1a, 0x2e, 0x63, 0x61, 0x6c, 0x63,
 	0x75, 0x6c, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x28, 0x01, 0x30, 0x01, 0x42, 0x0e, 0x5a, 0x0c, 0x63,
-	0x61, 0x6c, 0x63, 0x75, 0x6c, 0x61, 0x74, 0x6f, 0x72, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x28, 0x01, 0x30, 0x01, 0x12, 0x45, 0x0a, 0x0a, 0x53,
+	0x71, 0x75, 0x61, 0x72, 0x65, 0x52, 0x6f, 0x6f, 0x74, 0x12, 0x19, 0x2e, 0x63, 0x61, 0x6c, 0x63,
+	0x75, 0x6c, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x1a, 0x2e, 0x63, 0x61, 0x6c, 0x63, 0x75, 0x6c, 0x61, 0x74, 0x6f,
+	0x72, 0x2e, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0x00, 0x42, 0x0e, 0x5a, 0x0c, 0x63, 0x61, 0x6c, 0x63, 0x75, 0x6c, 0x61, 0x74, 0x6f, 0x72,
+	0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -391,12 +395,14 @@ var file_calculator_calculatorpb_calcultor_proto_depIdxs = []int32{
 	3, // 2: calculator.CalculatorService.PrimeNumberDecomposition:input_type -> calculator.NumberRequest
 	3, // 3: calculator.CalculatorService.Average:input_type -> calculator.NumberRequest
 	3, // 4: calculator.CalculatorService.CurrentMax:input_type -> calculator.NumberRequest
-	2, // 5: calculator.CalculatorService.Sum:output_type -> calculator.SumResponse
-	4, // 6: calculator.CalculatorService.PrimeNumberDecomposition:output_type -> calculator.NumberResponse
-	5, // 7: calculator.CalculatorService.Average:output_type -> calculator.AverageNumberResponse
-	4, // 8: calculator.CalculatorService.CurrentMax:output_type -> calculator.NumberResponse
-	5, // [5:9] is the sub-list for method output_type
-	1, // [1:5] is the sub-list for method input_type
+	3, // 5: calculator.CalculatorService.SquareRoot:input_type -> calculator.NumberRequest
+	2, // 6: calculator.CalculatorService.Sum:output_type -> calculator.SumResponse
+	4, // 7: calculator.CalculatorService.PrimeNumberDecomposition:output_type -> calculator.NumberResponse
+	5, // 8: calculator.CalculatorService.Average:output_type -> calculator.AverageNumberResponse
+	4, // 9: calculator.CalculatorService.CurrentMax:output_type -> calculator.NumberResponse
+	4, // 10: calculator.CalculatorService.SquareRoot:output_type -> calculator.NumberResponse
+	6, // [6:11] is the sub-list for method output_type
+	1, // [1:6] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -521,6 +527,10 @@ type CalculatorServiceClient interface {
 	Average(ctx context.Context, opts ...grpc.CallOption) (CalculatorService_AverageClient, error)
 	// Bidirectional Streaming API
 	CurrentMax(ctx context.Context, opts ...grpc.CallOption) (CalculatorService_CurrentMaxClient, error)
+	// Error Handling for Unary API
+	// This error will throw an exception if error is negative
+	// The error being sent is invalid argument
+	SquareRoot(ctx context.Context, in *NumberRequest, opts ...grpc.CallOption) (*NumberResponse, error)
 }
 
 type calculatorServiceClient struct {
@@ -637,6 +647,15 @@ func (x *calculatorServiceCurrentMaxClient) Recv() (*NumberResponse, error) {
 	return m, nil
 }
 
+func (c *calculatorServiceClient) SquareRoot(ctx context.Context, in *NumberRequest, opts ...grpc.CallOption) (*NumberResponse, error) {
+	out := new(NumberResponse)
+	err := c.cc.Invoke(ctx, "/calculator.CalculatorService/SquareRoot", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CalculatorServiceServer is the server API for CalculatorService service.
 type CalculatorServiceServer interface {
 	// Unary API
@@ -647,6 +666,10 @@ type CalculatorServiceServer interface {
 	Average(CalculatorService_AverageServer) error
 	// Bidirectional Streaming API
 	CurrentMax(CalculatorService_CurrentMaxServer) error
+	// Error Handling for Unary API
+	// This error will throw an exception if error is negative
+	// The error being sent is invalid argument
+	SquareRoot(context.Context, *NumberRequest) (*NumberResponse, error)
 }
 
 // UnimplementedCalculatorServiceServer can be embedded to have forward compatible implementations.
@@ -664,6 +687,9 @@ func (*UnimplementedCalculatorServiceServer) Average(CalculatorService_AverageSe
 }
 func (*UnimplementedCalculatorServiceServer) CurrentMax(CalculatorService_CurrentMaxServer) error {
 	return status.Errorf(codes.Unimplemented, "method CurrentMax not implemented")
+}
+func (*UnimplementedCalculatorServiceServer) SquareRoot(context.Context, *NumberRequest) (*NumberResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SquareRoot not implemented")
 }
 
 func RegisterCalculatorServiceServer(s *grpc.Server, srv CalculatorServiceServer) {
@@ -761,6 +787,24 @@ func (x *calculatorServiceCurrentMaxServer) Recv() (*NumberRequest, error) {
 	return m, nil
 }
 
+func _CalculatorService_SquareRoot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NumberRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CalculatorServiceServer).SquareRoot(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/calculator.CalculatorService/SquareRoot",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CalculatorServiceServer).SquareRoot(ctx, req.(*NumberRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _CalculatorService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "calculator.CalculatorService",
 	HandlerType: (*CalculatorServiceServer)(nil),
@@ -768,6 +812,10 @@ var _CalculatorService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Sum",
 			Handler:    _CalculatorService_Sum_Handler,
+		},
+		{
+			MethodName: "SquareRoot",
+			Handler:    _CalculatorService_SquareRoot_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

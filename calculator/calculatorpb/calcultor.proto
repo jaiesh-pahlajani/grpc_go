@@ -40,4 +40,9 @@ service CalculatorService{
 
   // Bidirectional Streaming API
   rpc CurrentMax(stream NumberRequest) returns (stream NumberResponse) {};
+
+  // Error Handling for Unary API
+  // This error will throw an exception if error is negative
+  // The error being sent is invalid argument
+  rpc SquareRoot(NumberRequest) returns (NumberResponse) {};
 }

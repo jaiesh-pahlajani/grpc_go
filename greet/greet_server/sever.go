@@ -9,9 +9,15 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/grpc_go/greet/greetpb"
+	"google.golang.org/grpc/reflection"
+
+	"google.golang.org/grpc/credentials"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
+
+	"github.com/grpc_go/greet/greetpb"
 )
 
 type server struct{}
@@ -89,6 +95,24 @@ func (*server) BidirectionalGreet(stream greetpb.GreetService_BidirectionalGreet
 	return nil
 }
 
+func (*server) GreetWithDeadline(ctx context.Context, req *greetpb.GreetRequest) (*greetpb.GreetResponse, error) {
+	fmt.Printf("Greet Deadline function was invoked %v \n", req)
+	for i := 0; i < 3; i++ {
+		if ctx.Err() == context.Canceled {
+			// Client cancelled the request
+			fmt.Println("Client cancelled the request")
+			return nil, status.Error(codes.Canceled, "the client cancelled the requesr")
+		}
+		time.Sleep(1 * time.Second)
+	}
+	firstName := req.GetGreeting().GetFirstName()
+	lastName := req.GetGreeting().GetLastName()
+	greetResponse := &greetpb.GreetResponse{
+		Result: "Hey " + firstName + " " + lastName + "!",
+	}
+	return greetResponse, nil
+}
+
 func main() {
 
 	// Port binding
@@ -97,9 +121,26 @@ func main() {
 		log.Fatalf("Failed to listen %v", err)
 	}
 
+	// SSL Cert
+	opts := []grpc.ServerOption{}
+	tls := false
+	if tls {
+		certFile := "ssl/server.crt"
+		keyFile := "ssl/server.pem"
+		creds, sslErr := credentials.NewServerTLSFromFile(certFile, keyFile)
+		if sslErr != nil {
+			log.Fatalf("Failed loading certificates: %v", sslErr)
+			return
+		}
+		opts = append(opts, grpc.Creds(creds))
+	}
+
 	// GRPC Server
-	s := grpc.NewServer()
+	s := grpc.NewServer(opts...)
 	greetpb.RegisterGreetServiceServer(s, &server{})
+
+	// Register reflection server on grpc
+	reflection.Register(s)
 
 	fmt.Println("Server started")
 

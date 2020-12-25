@@ -7,6 +7,10 @@ import (
 	"log"
 	"time"
 
+	"google.golang.org/grpc/codes"
+
+	"google.golang.org/grpc/status"
+
 	"github.com/grpc_go/calculator/calculatorpb"
 
 	"google.golang.org/grpc"
@@ -126,6 +130,46 @@ func doBiDiSteaming(client calculatorpb.CalculatorServiceClient) {
 	<-waitc
 }
 
+func doErrorUnary(client calculatorpb.CalculatorServiceClient) {
+
+	// correct call
+	response, err := client.SquareRoot(context.Background(), &calculatorpb.NumberRequest{
+		Number: int32(4),
+	})
+	if err != nil {
+		s, ok := status.FromError(err)
+		if ok {
+			// actual error - user error
+			if s.Code() == codes.InvalidArgument {
+				fmt.Println("Sent Negative Number")
+			}
+
+		} else {
+			fmt.Printf("Unknown error %v \n", err)
+		}
+	}
+	fmt.Println(response)
+
+	// error call
+	response, err = client.SquareRoot(context.Background(), &calculatorpb.NumberRequest{
+		Number: int32(-8),
+	})
+	if err != nil {
+		s, ok := status.FromError(err)
+		if ok {
+			// actual error - user error
+			if s.Code() == codes.InvalidArgument {
+				fmt.Println("Sent Negative Number")
+			}
+
+		} else {
+			fmt.Printf("Unknown error %v \n", err)
+		}
+	}
+	fmt.Println(response)
+
+}
+
 func main() {
 
 	// Create a connection
@@ -141,5 +185,6 @@ func main() {
 	//doUnary(client)
 	//doServerStreaming(client)
 	//doClientStreaming(client)
-	doBiDiSteaming(client)
+	//doBiDiSteaming(client)
+	doErrorUnary(client)
 }
