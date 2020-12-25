@@ -32,6 +32,12 @@ https://grpc.io/docs/guides/error/
 
 https://avi.im/grpc-errors/
 
+###### Deadlines
+
+Deadlines allow gRPC clients to specify how long they are willing for an RPC to complete before RPC is terminated with `DEADLINE_EXCEEDED`
+
+https://grpc.io/blog/deadlines/
+
 ###### Links
 
 https://docs.microsoft.com/en-us/aspnet/core/grpc/comparison?view=aspnetcore-3.0
