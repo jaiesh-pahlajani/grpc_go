@@ -37,4 +37,7 @@ service CalculatorService{
 
   // Client Streaming API
   rpc Average(stream NumberRequest) returns (AverageNumberResponse) {};
+
+  // Bidirectional Streaming API
+  rpc CurrentMax(stream NumberRequest) returns (stream NumberResponse) {};
 }
