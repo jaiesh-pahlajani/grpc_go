@@ -5,12 +5,16 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"math"
 	"net"
 	"time"
+
+	"google.golang.org/grpc/codes"
 
 	"github.com/grpc_go/calculator/calculatorpb"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/status"
 )
 
 type server struct{}
@@ -102,6 +106,18 @@ func (*server) CurrentMax(stream calculatorpb.CalculatorService_CurrentMaxServer
 		}
 	}
 	return nil
+}
+
+func (*server) SquareRoot(ctx context.Context, numberRequest *calculatorpb.NumberRequest) (*calculatorpb.NumberResponse, error) {
+	n := numberRequest.GetNumber()
+	if n < 0 {
+		return nil, status.Errorf(codes.InvalidArgument, "Received a negative number")
+	}
+
+	return &calculatorpb.NumberResponse{
+		Number: int32(math.Sqrt(float64(n))),
+	}, nil
+
 }
 
 func main() {

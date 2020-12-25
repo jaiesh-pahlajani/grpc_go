@@ -1,7 +1,47 @@
 # About this repo
 
-1. Implementation of gRPC server in Golang
-2. Unary implementation
-3. Server Streaming Implementation
-4. Client Streaming Implementation
-5. Bidirectional Implementation
+###### Types -
+
+1. Unary - Classic request / response on same TCP connection
+
+2. Server Streaming - Client sends one request, receives a stream of responses on same TCP connection
+
+3. Client Streaming - Client sends a stream of requests, receives a response on same TCP connection
+
+4. Bidirectional - Client and serves send a stream of request and responses on same TCP connection
+
+**The streaming capabilities are powered HTTP/2.0**
+
+###### Notes -
+
+Async by default and do not block threads on request and can serve millions of request in parallel
+
+Grpc can perform client side load balancing
+
+Each language will provide an API to load gRPC with required SSL certificates 
+
+Authentication using interceptors
+
+###### REST vs gRPC 
+
+![Alt text](grpc_vs_rest.png?raw=true "gRPC vs Rest")
+
+###### Error Handling
+
+https://grpc.io/docs/guides/error/
+
+https://avi.im/grpc-errors/
+
+###### Links
+
+https://docs.microsoft.com/en-us/aspnet/core/grpc/comparison?view=aspnetcore-3.0
+
+https://www.slideshare.net/borisovalex/grpc-vs-rest-let-the-battle-begin-81800634
+
+https://husobee.github.io/golang/rest/grpc/2016/05/28/golang-rest-v-grpc.html
+
+https://imagekit.io/demo/http2-vs-http1
+
+https://grpc.io/
+
+https://http2.github.io/
